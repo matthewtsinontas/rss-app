@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with the correct props 1`] = `
+<li>
+  test
+   - 
+  <a
+    onClick={[Function]}
+  >
+    delete
+  </a>
+</li>
+`;
