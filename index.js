@@ -8,8 +8,6 @@ var route = "http://feeds.ign.com/ign/all";
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
 
-console.log(__dirname  + '/dist');
-
 app.use('/dist', express.static(__dirname  + '/dist'))
 
 app.get('/', function (req, res) {
