@@ -2,30 +2,39 @@ var express = require('express')
 var app = express()
 var request = require('request');
 var xml2js = require('xml2js');
+var bodyParser = require('body-parser');
 
 var route = "http://feeds.ign.com/ign/all";
 
+// Setting view engines
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
 
+// Use statements - Setting up static dist directory and adding json middleware
 app.use('/dist', express.static(__dirname  + '/dist'))
+app.use(bodyParser.json());
 
+// Routing
 app.get('/', function (req, res) {
   res.render('layout');
 });
 
-app.get('/feeds', function (req, res) {
+app.post('/get-feed', function (req, res) {
+  var route = req.body.source;
   request(route, function(err, reqRes, body) {
     if (err || !reqRes || reqRes.statusCode !== 200) {
-      console.error("Error for some reason...");
+      //TODO: better error handling here... need to document all
+      // possible use cases I think
+      res.status(500).end();
+      return;
     }
     var parser = new xml2js.Parser();
     parser.parseString(body, function(err, result) {
-      res.send(result);
+      res.json(result);
     });
   });
 });
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('App listening on :3000');
 });
