@@ -8,25 +8,30 @@ class Sources extends React.Component {
   constructor() {
     super();
     this.state = {
-      newSource: ""
+      newSource: {
+        name: "",
+        source: ""
+      }
     };
     this.addSource = this.addSource.bind(this);
     this.updateNewSource = this.updateNewSource.bind(this);
   }
 
   render() {
+    const newSource = this.state.newSource;
     return (
       <div>
         <p>Sources List</p>
         <form onSubmit={this.addSource}>
-          <input type="text" value={this.state.newSource} onChange={this.updateNewSource}/>
+          <input type="text" value={newSource.name} onChange={this.updateNewSource.bind(this, "name")} placeholder="name"/>
+          <input type="text" value={newSource.source} onChange={this.updateNewSource.bind(this, "source")} placeholder="source"/>
           <button type="submit">Add new source</button>
         </form>
         {this.props.error ? (
           <p>There was an error with that source, please try again...</p>
         ) : null}
         {this.props.sources.map((source, i) => (
-          <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
+          <SourceListItem key={source} source={source.name} deleteItem={e => {this.props.deleteItem(i)}}/>
         ))}
         <p>number of items: {this.props.items.length}</p>
       </div>
@@ -36,19 +41,17 @@ class Sources extends React.Component {
   addSource(e) {
     e.preventDefault();
     this.props.addSource(this.state.newSource);
-    this.setState({newSource: ""});
+    this.setState({newSource: {name: "", source: ""}});
   }
 
-  updateNewSource(e) {
-    this.setState({
-      newSource: e.target.value
-    })
+  updateNewSource(key, e) {
+    let newSource = {...this.state.newSource, [key]: e.target.value};
+    this.setState({newSource})
   }
 }
 
 function mapProps(state) {
   const sourceState = state.sources;
-  console.log(state);
   return {
     sources: sourceState.sourcesList,
     error: sourceState.error,
@@ -59,8 +62,8 @@ function mapProps(state) {
 
 function mapDispatch(dispatch) {
   return {
-    addSource: (source) => {
-      dispatch(addSource(source));
+    addSource: (sourceObj) => {
+      dispatch(addSource(sourceObj));
     },
     deleteItem: (idx) => {
       dispatch(deleteSource(idx));

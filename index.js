@@ -4,8 +4,6 @@ var request = require('request');
 var xml2js = require('xml2js');
 var bodyParser = require('body-parser');
 
-var route = "http://feeds.ign.com/ign/all";
-
 // Setting view engines
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')

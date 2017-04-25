@@ -1,4 +1,5 @@
 import { ADD_SOURCE, DELETE_SOURCE, ADD_SOURCE_FAILURE, ADD_SOURCE_SUCCESS } from '../actions/sources';
+import { checkSourceListForSource } from '../../helpers/rss';
 
 const defaultState = {
   sourcesList: [],
@@ -25,14 +26,7 @@ export default function (state = defaultState, action) {
 
     // Case if the adding of source is successful, add it into the list
     case ADD_SOURCE_SUCCESS:
-      const newSource = action.source;
-      // Checking if the source already exists in the list
-      // If so, clear the input but dont update the list
-      if (state.sourcesList.includes(newSource)) {
-        return state;
-      }
-      // At this point, we don't hae the item in state, so slice the array
-      // add it, and update
+      const newSource = action.sourceObj;
       let sourcesList = state.sourcesList.slice();
       sourcesList.push(newSource);
       return {...state, sourcesList, error: false, loading: false};
