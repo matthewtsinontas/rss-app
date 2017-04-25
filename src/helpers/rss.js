@@ -31,11 +31,11 @@ export function checkSourceListForSource(list = [], source) {
 */
 function formatRssItem(item) {
   return {
-    description: item.description[0],
-    guid: item.guid[0],
-    link: item.link[0],
-    thumbnail: item['media:thumbnail'][0],
-    pubDate: item.pubDate[0],
-    title: item.title[0]
+    description: item.description ? item.description[0] : null,
+    guid: item.guid ? item.guid[0] : null,
+    link: item.link ? item.link[0] : null,
+    thumbnail: item['media:thumbnail'] ? item['media:thumbnail'][0] : null,
+    pubDate: item.pubDate ? item.pubDate[0] : null,
+    title: item.title ? item.title[0] : null
   }
 }
