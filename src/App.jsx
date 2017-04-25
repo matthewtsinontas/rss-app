@@ -1,5 +1,6 @@
 import React from 'react';
 import Sources from './containers/Sources.jsx';
+import NewsItems from './containers/NewsItems.jsx';
 
 /*
   Main app wrapper, simple display component which renders the 3 sections of the rss reader:
@@ -8,9 +9,10 @@ import Sources from './containers/Sources.jsx';
     3) The item being viewed at that time (the full article)
 */
 const App = () => (
-  //<NewsItems />
-  <Sources />
-  //<CurrentItem />
+  <div>
+    <NewsItems />
+    <Sources />
+  </div>
 );
 
 export default App;

@@ -33,7 +33,6 @@ class Sources extends React.Component {
         {this.props.sources.map((source, i) => (
           <SourceListItem key={source} source={source.name} deleteItem={e => {this.props.deleteItem(i)}}/>
         ))}
-        <p>number of items: {this.props.items.length}</p>
       </div>
     )
   }
@@ -55,8 +54,7 @@ function mapProps(state) {
   return {
     sources: sourceState.sourcesList,
     error: sourceState.error,
-    loading: sourceState.loading,
-    items: state.items.items
+    loading: sourceState.loading
   }
 }
 
