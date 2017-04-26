@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with the correct props 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    disabled={false}
+    onChange={[Function]}
+    placeholder="Add news source"
+    type="text"
+    value="newSource"
+  />
+  <button
+    disabled={false}
+    type="submit"
+  >
+    Add new source
+  </button>
+</form>
+`;

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SourceListItem from '../components/SourceListItem.jsx';
 import { addSource, deleteSource, fetchSources } from '../redux/actions/sources';
+import AddSourceForm from '../components/AddSourceForm.jsx';
 
 class Sources extends React.Component {
 
@@ -28,15 +29,17 @@ class Sources extends React.Component {
     return (
       <div>
         <p>Sources List</p>
-        <form onSubmit={this.addSource}>
-          <input type="text" value={this.state.newSource} onChange={this.updateNewSource} placeholder="Add news source"/>
-          <button type="submit">Add new source</button>
-        </form>
+        <AddSourceForm
+          loading={this.props.loading}
+          newSource={this.state.newSource}
+          updateNewSource={this.updateNewSource}
+          addNewSource={this.addSource}
+        />
         {this.props.error ? (
           <p>There was an error with that source, please try again...</p>
         ) : null}
         <p>Your Subscribed Feeds</p>
-        <button onClick={this.getNews}>Refresh Feed(s)</button>
+        <button disabled={!this.props.sources.length} onClick={this.getNews}>Refresh Feed(s)</button>
         {this.props.sources.map((source, i) => (
           <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
         ))}
