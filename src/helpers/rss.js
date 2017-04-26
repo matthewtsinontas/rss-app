@@ -8,6 +8,9 @@
 export function parseRss(rss) {
   var body = rss.channel[0];
   return {
+    title: body.title ? body.title[0] : null,
+    description: body.description ? body.description[0] : null,
+    link: body.link ? body.link[0] : null,
     items: body.item.map(formatRssItem)
   }
 }

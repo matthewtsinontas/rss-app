@@ -9,8 +9,8 @@ var request = require('request');
 */
 function parseXml(xml) {
   var parser = new xml2js.Parser();
-  return new Promise(function(resolve, reject) {
-    parser.parseString(xml, function(err, result) {
+  return new Promise((resolve, reject) => {
+    parser.parseString(xml,(err, result) => {
       err ? reject(err) : resolve(result);
     });
   });
@@ -25,8 +25,8 @@ function parseXml(xml) {
   TODO: Better error handling here needed
 */
 function getXmlFromRoute(route) {
-  return new Promise(function (resolve, reject) {
-    request(route, function(err, res, body) {
+  return new Promise( (resolve, reject) => {
+    request(route, (err, res, body) => {
       (err || !res || res.statusCode !== 200) ? reject(err) : resolve(body);
     });
   });

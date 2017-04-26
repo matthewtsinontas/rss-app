@@ -5,6 +5,7 @@ export const FETCHING_SOURCE = 'FETCHING_SOURCE';
 export const DELETE_SOURCE = 'DELETE_SOURCE';
 export const ADD_SOURCE_SUCCESS = 'ADD_SOURCE_SUCCESS';
 export const ADD_SOURCE_FAILURE = 'ADD_SOURCE_FAILURE';
+export const REFRESHED_MULTIPLE_SOURCES = 'REFRESHED_MULTIPLE_SOURCES';
 
 export function addSource(sourceObj) {
   return (dispatch, getState) => {
@@ -26,12 +27,16 @@ export function deleteSource(idx) {
 }
 
 export function fetchSources(sources = []) {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch({type: FETCHING_SOURCE});
     axios.post('/get-multiple-feeds', {sources}).then(res => {
-      console.log("Successful fetch multiple sources", res);
+      const items = res.data.map(sourceObj => {
+        return {name: sourceObj.name, items: parseRss(sourceObj.rss.rss)}
+      })
+      dispatch({type: REFRESHED_MULTIPLE_SOURCES, items});
     }).catch(err => {
-      console.log("Failed fetch multiple sources", err);
+      console.log(err);
+      dispatch({type: ADD_SOURCE_FAILURE});
     });
   }
 }

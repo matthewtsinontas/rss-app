@@ -20,7 +20,7 @@ class Sources extends React.Component {
 
   componentDidMount() {
     //Dispatch call to get news sources every 5 minutes...
-    //setInterval(() => {this.getNews()}, 5000);
+    setInterval(() => {this.getNews()}, 5000);
   }
 
   componentWillUnmount() {
@@ -40,9 +40,9 @@ class Sources extends React.Component {
         {this.props.error ? (
           <p>There was an error with that source, please try again...</p>
         ) : null}
-        {this.props.sources.map((source, i) => (
+        {/*this.props.sources.map((source, i) => (
           <SourceListItem key={source} source={source.name} deleteItem={e => {this.props.deleteItem(i)}}/>
-        ))}
+        ))*/}
       </div>
     )
   }
@@ -60,8 +60,7 @@ class Sources extends React.Component {
 
   getNews() {
     if (this.props.sources.length) {
-      var sources = this.props.sources.map(s => s.source);
-      this.props.fetchSources(sources);
+      this.props.fetchSources(this.props.sources);
     }
   }
 }
