@@ -1,8 +1,11 @@
 var express = require('express')
 var app = express()
-var request = require('request');
-var xml2js = require('xml2js');
 var bodyParser = require('body-parser');
+
+// Controllers
+var indexRoute = require('./server/controllers/indexRoute');
+var getFeedRoute = require('./server/controllers/getFeedRoute');
+var getMultipleFeedsRoute = require('./server/controllers/getMultipleFeedsRoute');
 
 // Setting view engines
 app.set('views', __dirname + '/views')
@@ -13,26 +16,11 @@ app.use('/dist', express.static(__dirname  + '/dist'))
 app.use(bodyParser.json());
 
 // Routing
-app.get('/', function (req, res) {
-  res.render('layout');
-});
+app.get('/', indexRoute);
+app.post('/get-feed', getFeedRoute);
+app.post('/get-multiple-feeds', getMultipleFeedsRoute);
 
-app.post('/get-feed', function (req, res) {
-  var route = req.body.source;
-  request(route, function(err, reqRes, body) {
-    if (err || !reqRes || reqRes.statusCode !== 200) {
-      //TODO: better error handling here... need to document all
-      // possible use cases I think
-      res.status(500).end();
-      return;
-    }
-    var parser = new xml2js.Parser();
-    parser.parseString(body, function(err, result) {
-      res.json(result);
-    });
-  });
-});
-
+// Server listen
 app.listen(3000, function () {
   console.log('App listening on :3000');
 });

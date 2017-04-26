@@ -1,4 +1,4 @@
-import { ADD_SOURCE, DELETE_SOURCE, ADD_SOURCE_FAILURE, ADD_SOURCE_SUCCESS } from '../actions/sources';
+import { FETCHING_SOURCE, DELETE_SOURCE, ADD_SOURCE_FAILURE, ADD_SOURCE_SUCCESS } from '../actions/sources';
 import { checkSourceListForSource } from '../../helpers/rss';
 
 const defaultState = {
@@ -11,7 +11,7 @@ export default function (state = defaultState, action) {
   switch (action.type) {
 
     // Case to add a new source to the list of sources which are polled for data
-    case ADD_SOURCE:
+    case FETCHING_SOURCE:
       return {...state, loading: true}
 
     // Case to remove a source item by splicing it out of the array of sources

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SourceListItem from '../components/SourceListItem.jsx';
-import { addSource, updateNewSource, deleteSource } from '../redux/actions/sources';
+import { addSource, deleteSource, fetchSources } from '../redux/actions/sources';
 
 class Sources extends React.Component {
 
@@ -15,6 +15,16 @@ class Sources extends React.Component {
     };
     this.addSource = this.addSource.bind(this);
     this.updateNewSource = this.updateNewSource.bind(this);
+    this.getNews = this.getNews.bind(this);
+  }
+
+  componentDidMount() {
+    //Dispatch call to get news sources every 5 minutes...
+    //setInterval(() => {this.getNews()}, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
@@ -47,6 +57,13 @@ class Sources extends React.Component {
     let newSource = {...this.state.newSource, [key]: e.target.value};
     this.setState({newSource})
   }
+
+  getNews() {
+    if (this.props.sources.length) {
+      var sources = this.props.sources.map(s => s.source);
+      this.props.fetchSources(sources);
+    }
+  }
 }
 
 function mapProps(state) {
@@ -65,6 +82,9 @@ function mapDispatch(dispatch) {
     },
     deleteItem: (idx) => {
       dispatch(deleteSource(idx));
+    },
+    fetchSources: (sources = []) => {
+      dispatch(fetchSources(sources));
     }
   }
 }
