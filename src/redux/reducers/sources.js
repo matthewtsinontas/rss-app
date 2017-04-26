@@ -26,7 +26,7 @@ export default function (state = defaultState, action) {
 
     // Case if the adding of source is successful, add it into the list
     case ADD_SOURCE_SUCCESS:
-      const newSource = action.sourceObj;
+      const newSource = action.source;
       let sourcesList = state.sourcesList.slice();
       sourcesList.push(newSource);
       return {...state, sourcesList, error: false, loading: false};

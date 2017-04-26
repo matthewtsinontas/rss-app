@@ -8,10 +8,7 @@ class Sources extends React.Component {
   constructor() {
     super();
     this.state = {
-      newSource: {
-        name: "",
-        source: ""
-      }
+      newSource: ""
     };
     this.addSource = this.addSource.bind(this);
     this.updateNewSource = this.updateNewSource.bind(this);
@@ -28,21 +25,20 @@ class Sources extends React.Component {
   }
 
   render() {
-    const newSource = this.state.newSource;
     return (
       <div>
         <p>Sources List</p>
         <form onSubmit={this.addSource}>
-          <input type="text" value={newSource.name} onChange={this.updateNewSource.bind(this, "name")} placeholder="name"/>
-          <input type="text" value={newSource.source} onChange={this.updateNewSource.bind(this, "source")} placeholder="source"/>
+          <input type="text" value={this.state.newSource} onChange={this.updateNewSource} placeholder="Add news source"/>
           <button type="submit">Add new source</button>
         </form>
         {this.props.error ? (
           <p>There was an error with that source, please try again...</p>
         ) : null}
-        {/*this.props.sources.map((source, i) => (
-          <SourceListItem key={source} source={source.name} deleteItem={e => {this.props.deleteItem(i)}}/>
-        ))*/}
+        <p>Your Subscribed Feeds</p>
+        {this.props.sources.map((source, i) => (
+          <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
+        ))}
       </div>
     )
   }
@@ -50,12 +46,11 @@ class Sources extends React.Component {
   addSource(e) {
     e.preventDefault();
     this.props.addSource(this.state.newSource);
-    this.setState({newSource: {name: "", source: ""}});
+    this.setState({newSource: ""});
   }
 
-  updateNewSource(key, e) {
-    let newSource = {...this.state.newSource, [key]: e.target.value};
-    this.setState({newSource})
+  updateNewSource(e) {
+    this.setState({newSource: e.target.value});
   }
 
   getNews() {

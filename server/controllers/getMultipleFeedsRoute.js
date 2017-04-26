@@ -4,15 +4,13 @@ var parseXml = helpers.parseXml;
 
 module.exports = (req, res) => {
   var sources = req.body.sources;
-  var allSourcePromises = sources.map(sourceObj => {
-    return getXmlFromRoute(sourceObj.source).then(xml => {
+  var allSourcePromises = sources.map(source => {
+    return getXmlFromRoute(source).then(xml => {
       return parseXml(xml);
     });
   });
-  Promise.all(allSourcePromises).then(xmlResponses => {
-    res.json(xmlResponses.map((rss, i) => {
-      return {name: sources[i].name, rss};
-    }));
+  Promise.all(allSourcePromises).then(xmlRes => {
+    res.json(xmlRes);
   }).catch(err => {
     res.status(500).end();
   });
