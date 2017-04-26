@@ -27,8 +27,11 @@ describe('checkSourceListTests', () => {
 });
 
 describe('parseRssTests', () => {
-  it('returns the items as a top level key', () => {
+  it('returns the correct top level keys', () => {
     expect(parseRss(rss)).toHaveProperty('items');
+    expect(parseRss(rss)).toHaveProperty('description');
+    expect(parseRss(rss)).toHaveProperty('link');
+    expect(parseRss(rss)).toHaveProperty('title');
   });
   it('returns the items properties as flat level keys', () => {
     var parsedRss = parseRss(rss);
