@@ -17,7 +17,7 @@ class Sources extends React.Component {
 
   componentDidMount() {
     //Dispatch call to get news sources every 5 minutes...
-    setInterval(() => {this.getNews()}, 5000);
+    setInterval(() => {this.getNews()}, 1000 * 60 * 5);
   }
 
   componentWillUnmount() {
@@ -36,6 +36,7 @@ class Sources extends React.Component {
           <p>There was an error with that source, please try again...</p>
         ) : null}
         <p>Your Subscribed Feeds</p>
+        <button onClick={this.getNews}>Refresh Feed(s)</button>
         {this.props.sources.map((source, i) => (
           <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
         ))}
