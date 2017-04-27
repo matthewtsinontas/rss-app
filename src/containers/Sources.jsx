@@ -27,7 +27,7 @@ class Sources extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="sources">
         <p>Sources List</p>
         <AddSourceForm
           loading={this.props.loading}

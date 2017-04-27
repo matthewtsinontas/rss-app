@@ -17,6 +17,7 @@ export function addSource(source) {
       const rss = parseRss(res.data.rss);
       dispatch({type: ADD_SOURCE_SUCCESS, rss, source});
     }).catch(err => {
+      console.log(err);
       dispatch({type: ADD_SOURCE_FAILURE});
     });
   }

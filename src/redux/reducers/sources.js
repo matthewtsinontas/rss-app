@@ -1,4 +1,4 @@
-import { FETCHING_SOURCE, DELETE_SOURCE, ADD_SOURCE_FAILURE, ADD_SOURCE_SUCCESS } from '../actions/sources';
+import { FETCHING_SOURCE, DELETE_SOURCE, ADD_SOURCE_FAILURE, ADD_SOURCE_SUCCESS, REFRESHED_MULTIPLE_SOURCES } from '../actions/sources';
 import { checkSourceListForSource } from '../../helpers/rss';
 
 const defaultState = {
@@ -30,6 +30,9 @@ export default function (state = defaultState, action) {
       let sourcesList = state.sourcesList.slice();
       sourcesList.push(newSource);
       return {...state, sourcesList, error: false, loading: false};
+
+    case REFRESHED_MULTIPLE_SOURCES:
+      return {...state, loading: false, error: false}
 
     default: return state;
   }

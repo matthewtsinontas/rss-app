@@ -1,20 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ItemGroup from '../components/ItemGroup.jsx';
+import { selectItemGroup, showNewsItem } from '../redux/actions/items';
 
 class NewsItems extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Items</h1>
-        {this.props.items.map(item =>
+      <div className="news-items">
+        {this.props.items.map((item, i) =>
           <ItemGroup
             key={item.link}
             title={item.title}
             desc={item.description}
             link={item.link}
             items={item.items}
+            selected={i === this.props.selectedItemGroup}
+            selectItemGroup={() => {this.props.selectItemGroup(i)}}
+            selectSubItem={(guid) => {this.props.showNewsItem(i, guid)}}
           />
         )}
       </div>
@@ -25,8 +28,20 @@ class NewsItems extends React.Component {
 
 function mapProps(state) {
   return {
-    items: state.items.items
+    items: state.items.items,
+    selectedItemGroup: state.items.selectedItemGroup
   }
 }
 
-export default connect(mapProps)(NewsItems);
+function mapDispatchToProps(dispatch) {
+  return {
+    selectItemGroup: (i) => {
+      dispatch(selectItemGroup(i))
+    },
+    showNewsItem: (i, guid) => {
+      dispatch(showNewsItem(i, guid));
+    }
+  }
+}
+
+export default connect(mapProps, mapDispatchToProps)(NewsItems);
