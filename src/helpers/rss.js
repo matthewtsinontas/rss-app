@@ -37,7 +37,7 @@ function formatRssItem(item) {
     description: item.description ? item.description[0] : null,
     guid: item.guid ? item.guid[0]._ : null,
     link: item.link ? item.link[0] : null,
-    thumbnail: item['media:thumbnail'] ? item['media:thumbnail'][0] : null,
+    thumbnail: item['media:thumbnail'] ? item['media:thumbnail'][0].$ : null,
     pubDate: item.pubDate ? item.pubDate[0] : null,
     title: item.title ? item.title[0] : null,
     content: item['content:encoded'] ? item['content:encoded'][0] : null

@@ -26,10 +26,6 @@ html, body, #container, .container {
   padding: 15px;
 }
 
-.sub-item {
-  margin: 10px;
-}
-
 /* Item group styling */
 
 .item-group {
@@ -42,7 +38,7 @@ html, body, #container, .container {
 }
 
 .item-group-head.selected {
-  background-color: #eee;
+  background-color: #ddd;
   border-bottom: 1px solid #ccc;
 }
 
@@ -71,6 +67,23 @@ html, body, #container, .container {
 }
 
 .sub-item {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ddd;
   cursor: pointer;
+  padding: 10px;
+}
+
+.sub-item.selected {
+  background-color: #eee;
+}
+
+.display-item {
+  margin: 0 20px;
+}
+
+.refresh-button {
+  margin-top: 10px;
+}
+
+.sources li a {
+
 }

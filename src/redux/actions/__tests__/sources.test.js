@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { addSource, deleteSource } from '../sources';
 import { ADD_SOURCE, DELETE_SOURCE } from '../sources';
 

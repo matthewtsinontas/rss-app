@@ -28,7 +28,7 @@ class Sources extends React.Component {
   render() {
     return (
       <div className="sources">
-        <p>Sources List</p>
+        <h3>Sources List</h3>
         <AddSourceForm
           loading={this.props.loading}
           newSource={this.state.newSource}
@@ -39,10 +39,10 @@ class Sources extends React.Component {
           <p>There was an error with that source, please try again...</p>
         ) : null}
         <p>Your Subscribed Feeds</p>
-        <button disabled={!this.props.sources.length} onClick={this.getNews}>Refresh Feed(s)</button>
         {this.props.sources.map((source, i) => (
           <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
         ))}
+        <button className="refresh-button" disabled={!this.props.sources.length} onClick={this.getNews}>Refresh Feed(s)</button>
       </div>
     )
   }

@@ -5,9 +5,9 @@ const rss = {
   channel: [{
     item: [{
       description: ["description"],
-      guid: ["guid"],
+      guid: [{_: "guid"}],
       link: ["link"],
-      'media:thumbnail': ["thumbnail"],
+      'media:thumbnail': [{$: "thumbnail"}],
       pubDate: ["pubDate"],
       title: ["title"]
     }]

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with the correct props 1`] = `
+<div
+  className="item-group"
+>
+  <div
+    className="item-group-head "
+    onClick={[Function]}
+  >
+    <h3
+      className="item-title"
+    >
+      <a
+        href="http://google.com"
+        target="_blank"
+      >
+        title
+      </a>
+    </h3>
+    <p
+      className="item-desc"
+    >
+      desc
+    </p>
+  </div>
+</div>
+`;

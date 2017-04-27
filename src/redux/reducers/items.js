@@ -24,7 +24,7 @@ export default function(state = defaultState, action) {
       return {...state, selectedItemGroup}
     case SHOW_NEWS_ITEM:
       const { itemGroup, guid } = action;
-      return {...state, selectedNewsItem: items[itemGroup].find(item => item.guid === guid)};
+      return {...state, selectedNewsItem: state.items[itemGroup].items.find(item => item.guid === guid)};
     default: return state;
   }
 }

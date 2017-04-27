@@ -5,6 +5,7 @@ exports[`renders with the correct props 1`] = `
   test
    - 
   <a
+    href="#"
     onClick={[Function]}
   >
     delete

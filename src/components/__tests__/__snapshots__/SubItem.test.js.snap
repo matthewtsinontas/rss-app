@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with the correct props 1`] = `
+<div
+  className="sub-item "
+  onClick={[Function]}
+>
+  <p>
+    test
+  </p>
+  <span>
+    description
+  </span>
+</div>
+`;

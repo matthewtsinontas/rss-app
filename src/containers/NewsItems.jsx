@@ -18,6 +18,7 @@ class NewsItems extends React.Component {
             selected={i === this.props.selectedItemGroup}
             selectItemGroup={() => {this.props.selectItemGroup(i)}}
             selectSubItem={(guid) => {this.props.showNewsItem(i, guid)}}
+            selectedNewsItem={this.props.selectedNewsItem}
           />
         )}
       </div>
@@ -29,7 +30,8 @@ class NewsItems extends React.Component {
 function mapProps(state) {
   return {
     items: state.items.items,
-    selectedItemGroup: state.items.selectedItemGroup
+    selectedItemGroup: state.items.selectedItemGroup,
+    selectedNewsItem: state.items.selectedNewsItem
   }
 }
 
