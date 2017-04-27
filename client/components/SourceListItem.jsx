@@ -6,7 +6,12 @@ import React from 'react';
     can fire an action
 */
 const SourceListItem = ({source, deleteItem}) => (
-  <li>{source} - <a href="#" onClick={deleteItem}>delete</a></li>
+  <li>
+    {source}
+    <button className="btn btn-danger" onClick={deleteItem}>
+      <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    </button>
+  </li>
 );
 
 export default SourceListItem;

@@ -84,6 +84,10 @@ html, body, #container, .container {
   margin-top: 10px;
 }
 
-.sources li a {
+img {
+  max-width: 100%;
+}
 
+.btn-success, .btn-danger {
+  margin-left: 10px;
 }

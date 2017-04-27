@@ -15,6 +15,7 @@ app.set('view engine', 'jade')
 app.use('/dist', express.static(__dirname  + '/dist'))
 app.use(bodyParser.json());
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/fonts', express.static(__dirname + '/node_modules/bootstrap/fonts'));
 
 // Routing
 app.get('/', indexRoute);

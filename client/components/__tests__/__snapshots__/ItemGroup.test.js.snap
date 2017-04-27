@@ -11,11 +11,13 @@ exports[`renders with the correct props 1`] = `
     <h3
       className="item-title"
     >
+      title
+       - 
       <a
         href="http://google.com"
         target="_blank"
       >
-        title
+        visit
       </a>
     </h3>
     <p

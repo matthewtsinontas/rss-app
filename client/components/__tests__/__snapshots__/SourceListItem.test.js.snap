@@ -3,12 +3,14 @@
 exports[`renders with the correct props 1`] = `
 <li>
   test
-   - 
-  <a
-    href="#"
+  <button
+    className="btn btn-danger"
     onClick={[Function]}
   >
-    delete
-  </a>
+    <span
+      aria-hidden="true"
+      className="glyphicon glyphicon-trash"
+    />
+  </button>
 </li>
 `;

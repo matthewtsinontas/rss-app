@@ -22,6 +22,6 @@ it('should call the provided function when delete is clicked', () => {
   const wrapper = shallow(
     <SourceListItem source="text" deleteItem={onDeleteClick} />
   );
-  wrapper.find('a').simulate('click');
+  wrapper.find('button').simulate('click');
   expect(onDeleteClick.calledOnce).toEqual(true);
 });

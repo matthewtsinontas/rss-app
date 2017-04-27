@@ -2,20 +2,27 @@
 
 exports[`renders with the correct props 1`] = `
 <form
+  className="form-inline"
   onSubmit={[Function]}
 >
-  <input
-    disabled={false}
-    onChange={[Function]}
-    placeholder="Add news source"
-    type="text"
-    value="newSource"
-  />
+  <div
+    className="form-group"
+  >
+    <input
+      className="form-control"
+      disabled={false}
+      onChange={[Function]}
+      placeholder="Add news source"
+      type="text"
+      value="newSource"
+    />
+  </div>
   <button
+    className="btn btn-success"
     disabled={false}
     type="submit"
   >
-    Add new source
+    Add
   </button>
 </form>
 `;

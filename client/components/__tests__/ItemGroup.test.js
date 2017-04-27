@@ -41,7 +41,7 @@ it('has a selected class if selected is true', () => {
 it('renders a view link with the title and link attached', () => {
   const wrapper = shallow(item);
   expect(wrapper.find('a').prop('href')).toEqual("http://google.com");
-  expect(wrapper.find('a').text()).toEqual("title");
+  expect(wrapper.find('a').text()).toEqual("visit");
 });
 
 it('renders sub items if any items are pased in', () => {
