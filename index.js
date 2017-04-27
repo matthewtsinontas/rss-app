@@ -14,6 +14,7 @@ app.set('view engine', 'jade')
 // Use statements - Setting up static dist directory and adding json middleware
 app.use('/dist', express.static(__dirname  + '/dist'))
 app.use(bodyParser.json());
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 // Routing
 app.get('/', indexRoute);
