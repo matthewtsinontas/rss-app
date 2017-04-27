@@ -37,15 +37,21 @@ class Sources extends React.Component {
           addNewSource={this.addSource}
         />
         {this.props.error ? (
-          <p>There was an error with that source, please try again...</p>
+          <div className="alert alert-danger">
+            There was an error with that source, please try again...
+          </div>
         ) : null}
-        <h5>Your Subscribed Feeds</h5>
-        {this.props.sources.map((source, i) => (
-          <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
-        ))}
-        <button className="refresh-button btn btn-info" disabled={!this.props.sources.length} onClick={this.getNews}>
-          {this.props.loading ? "Loading ..." : "Refresh Feed(s)"}
-        </button>
+        {this.props.sources.length ? (
+          <div>
+            <h5>Your Subscribed Feeds</h5>
+            {this.props.sources.map((source, i) => (
+              <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
+            ))}
+            <button className="refresh-button btn btn-info" disabled={this.props.loading} onClick={this.getNews}>
+              {this.props.loading ? "Loading ..." : "Refresh Feed(s)"}
+            </button>
+          </div>
+        ) : null}
       </div>
     )
   }

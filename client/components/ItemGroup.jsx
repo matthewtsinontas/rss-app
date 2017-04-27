@@ -9,9 +9,14 @@ import SubItem from './SubItem.jsx';
 */
 const ItemGroup = ({title, desc, link, items, selected, selectItemGroup, selectSubItem, selectedNewsItem}) => (
   <div className="item-group">
-    <div className={`item-group-head ${selected ? "selected" : ""}`} onClick={selectItemGroup}>
-      <h3 className="item-title">{title} - <a href={link} target="_blank">visit</a></h3>
-      <p className="item-desc">{desc}</p>
+    <div className={`row item-group-head ${selected ? "selected" : ""}`} onClick={selectItemGroup}>
+      <div className="col-sm-11">
+        <h3 className="item-title">{title} - <a href={link} target="_blank">visit</a></h3>
+        <p className="item-desc">{desc}</p>
+      </div>
+      <div className="col-sm-1 arrow-icon">
+        <span className={`glyphicon glyphicon-menu-${selected ? "down" : "up"}`} aria-hidden="true" />
+      </div>
     </div>
     {selected ? (
       <div className="item-sub-items">

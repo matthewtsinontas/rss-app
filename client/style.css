@@ -3,7 +3,7 @@ html, body, #container, .container {
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: Arial;
+  font-family: Helvetica;
 }
 
 .left-bar {
@@ -17,6 +17,7 @@ html, body, #container, .container {
   float: right;
   width: calc(65% - 1px);
   height: 100%;
+  background-color: #f9ffff ;
 }
 
 .sources {
@@ -35,10 +36,10 @@ html, body, #container, .container {
 .item-group-head {
   padding: 15px;
   cursor: pointer;
+  margin: 0;
 }
 
 .item-group-head.selected {
-  background-color: #ddd;
   border-bottom: 1px solid #ccc;
 }
 
@@ -77,7 +78,18 @@ html, body, #container, .container {
 }
 
 .display-item {
-  margin: 0 20px;
+  margin: 0 10%;
+  padding: 20px;
+  text-align: center;
+  height: 100%;
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.display-item img {
+  margin: 0 auto;
+  display: block;
 }
 
 .refresh-button {
@@ -90,4 +102,17 @@ img {
 
 .btn-success, .btn-danger {
   margin-left: 10px;
+}
+
+.arrow-icon {
+  font-size: 32px;
+}
+
+.arrow-icon span {
+  line-height: 47px;
+}
+
+.alert-danger {
+  padding: 5px 15px;
+  margin-top: 10px;
 }

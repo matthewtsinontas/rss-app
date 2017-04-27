@@ -19,7 +19,7 @@ class DisplayNewsItem extends React.Component {
     }
     return (
       <div className="display-item">
-        <h1>{item.title} - <a href={item.link} target="_blank">Link</a></h1>
+        <h2>{item.title} - <a href={item.link} target="_blank">Link</a></h2>
         <p>{item.pubDate}</p>
         {item.thumbnail ? (
           <img src={item.thumbnail.url} />
