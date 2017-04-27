@@ -31,6 +31,7 @@ export default function (state = defaultState, action) {
       sourcesList.push(newSource);
       return {...state, sourcesList, error: false, loading: false};
 
+    // Case once a feed refresh has been completed, just to unset the loading state
     case REFRESHED_MULTIPLE_SOURCES:
       return {...state, loading: false, error: false}
 

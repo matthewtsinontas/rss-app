@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import ItemGroup from '../components/ItemGroup.jsx';
 import { selectItemGroup, showNewsItem } from '../redux/actions/items';
 
+/**
+  Container component used to display a list of the ItemGroups
+  Maps the item groups from state, along with either the item group or the sub item
+    if they have been selected (so the child components can know if the item has babel-preset-env
+    selected or not)
+
+  Returns a top level with after mapping the sub items groups
+*/
 class NewsItems extends React.Component {
 
   render() {
@@ -24,10 +32,9 @@ class NewsItems extends React.Component {
       </div>
     )
   }
-
 }
 
-function mapProps(state) {
+function mapStateToProps(state) {
   return {
     items: state.items.items,
     selectedItemGroup: state.items.selectedItemGroup,
@@ -46,4 +53,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapProps, mapDispatchToProps)(NewsItems);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsItems);

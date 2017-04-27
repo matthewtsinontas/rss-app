@@ -4,16 +4,17 @@ import SourceListItem from '../components/SourceListItem.jsx';
 import { addSource, deleteSource, fetchSources } from '../redux/actions/sources';
 import AddSourceForm from '../components/AddSourceForm.jsx';
 
+/**
+  Container component to display the form to adding sources and a list of the sources
+    you have subsribed too with some simple error and loading props
+
+  Attaches a 5 minute interval function to auto refresh the feeds every 5 minutes
+    but only if there are actually sources to load
+*/
 class Sources extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      newSource: ""
-    };
-    this.addSource = this.addSource.bind(this);
-    this.updateNewSource = this.updateNewSource.bind(this);
-    this.getNews = this.getNews.bind(this);
+  state = {
+    newSource: ""
   }
 
   componentDidMount() {
@@ -42,29 +43,36 @@ class Sources extends React.Component {
         {this.props.sources.map((source, i) => (
           <SourceListItem key={source} source={source} deleteItem={e => {this.props.deleteItem(i)}}/>
         ))}
-        <button className="refresh-button" disabled={!this.props.sources.length} onClick={this.getNews}>Refresh Feed(s)</button>
+        <button className="refresh-button" disabled={!this.props.sources.length} onClick={this.getNews}>
+          {this.props.loading ? "Loading ..." : "Refresh Feed(s)"}
+        </button>
       </div>
     )
   }
 
-  addSource(e) {
+  // Dispatches a call to fetch the new source and resets the newSource in state
+  // back to an empty string
+  addSource = (e) => {
     e.preventDefault();
     this.props.addSource(this.state.newSource);
     this.setState({newSource: ""});
   }
 
-  updateNewSource(e) {
+  // Updates the newSource slice of state with the value from the input
+  updateNewSource = (e) => {
     this.setState({newSource: e.target.value});
   }
 
-  getNews() {
+  // Dispatches a action to fetch auto refresh (or manual if the button is pressed)
+  // the feed list only if there are sources available
+  getNews = () => {
     if (this.props.sources.length) {
       this.props.fetchSources(this.props.sources);
     }
   }
 }
 
-function mapProps(state) {
+function mapStateToProps(state) {
   const sourceState = state.sources;
   return {
     sources: sourceState.sourcesList,
@@ -73,7 +81,7 @@ function mapProps(state) {
   }
 }
 
-function mapDispatch(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     addSource: (sourceObj) => {
       dispatch(addSource(sourceObj));
@@ -87,4 +95,4 @@ function mapDispatch(dispatch) {
   }
 }
 
-export default connect(mapProps, mapDispatch)(Sources);
+export default connect(mapStateToProps, mapDispatchToProps)(Sources);
